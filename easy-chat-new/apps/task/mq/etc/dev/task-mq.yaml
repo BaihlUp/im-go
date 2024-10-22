@@ -1,0 +1,48 @@
+Name: task.mq
+ListenOn: 0.0.0.0:10091
+
+MsgChatTransfer:
+  Name: MsgChatTransfer
+  Brokers:
+    - 192.168.199.138:9092
+  Group: kafka
+  Topic: msgChatTransfer
+  Offset: first
+  Consumers: 1
+
+MsgReadTransfer:
+  Name: MsgReadTransfer
+  Brokers:
+    - 192.168.199.138:9092
+  Group: kafka
+  Topic: msgReadTransfer
+  Offset: first
+  Consumers: 1
+
+MsgReadHandler:
+  GroupMsgReadHandler: 1
+  GroupMsgReadRecordDelayTime: 5
+  GroupMsgReadRecordDelayCount: 2
+
+Redisx:
+  Host: 192.168.199.138:16379
+  Type: node
+  Pass: easy-chat
+
+Mongo:
+  Url: "mongodb://root:easy-chat@192.168.199.138:47017"
+  Db: easy-chat
+
+SocialRpc:
+  Etcd:
+    Hosts:
+      - 192.168.199.138:3379
+    Key: social.rpc
+
+Ws:
+  Host: 192.168.199.138:10090
+
+Telemetry:
+  Name: task.mq
+  Endpoint: http://192.168.199.138:14268/api/traces
+  Batcher: jaeger

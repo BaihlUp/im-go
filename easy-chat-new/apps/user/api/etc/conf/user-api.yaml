@@ -1,0 +1,19 @@
+host: 0.0.0.0
+jwtauth:
+    accessexpire: 8640000
+    accesssecret: github/jmh000527
+name: user
+port: 8888
+redisx:
+    host: 192.168.199.138:16379
+    pass: easy-chat
+    type: node
+telemetry:
+    batcher: jaeger
+    endpoint: http://192.168.199.138:14268/api/traces
+    name: user.api
+userrpc:
+    etcd:
+        hosts:
+            - 192.168.199.138:3379
+        key: user.rpc
